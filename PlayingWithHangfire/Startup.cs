@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PlayingWithHangfire.Jobs;
 
 namespace PlayingWithHangfire
 {
@@ -41,6 +42,9 @@ namespace PlayingWithHangfire
         options.WorkerCount             = 5;
         options.SchedulePollingInterval = TimeSpan.FromSeconds(10);
       });
+
+      services.AddSingleton<SingletonDependency>();
+      services.AddScoped<IRandomNumberJob, RandomNumberJob>();
     }
 
     public void Configure(

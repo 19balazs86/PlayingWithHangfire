@@ -1,6 +1,7 @@
 ﻿using System;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
+using PlayingWithHangfire.Jobs;
 
 namespace PlayingWithHangfire.Controllers
 {
@@ -19,6 +20,12 @@ namespace PlayingWithHangfire.Controllers
     public string EnqueueConsole([FromQuery] int randomInt)
     {
       return _backgroundJobs.Enqueue(() => Console.WriteLine("Hello EnqueueConsole with number: {0}.", randomInt));
+    }
+
+    [HttpGet(nameof(EnqueueRandomNumberJob))]
+    public void EnqueueRandomNumberJob([FromQuery] int randomInt)
+    {
+      _backgroundJobs.Enqueue<IRandomNumberJob>(job => job.PrintNumber(randomInt));
     }
   }
 }
