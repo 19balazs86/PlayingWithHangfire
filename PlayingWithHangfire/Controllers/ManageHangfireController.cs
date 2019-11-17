@@ -27,5 +27,23 @@ namespace PlayingWithHangfire.Controllers
     {
       _backgroundJobs.Enqueue<IRandomNumberJob>(job => job.PrintNumber(randomInt));
     }
+
+    [HttpGet(nameof(ScheduleEnqueueAt))]
+    public void ScheduleEnqueueAt([FromQuery] int randomInt)
+    {
+      var input     = new ScheduledJobInput { Number = randomInt, ScheduleAt = DateTimeOffset.UtcNow };
+      var enqueueAt = input.ScheduleAt.AddSeconds(5);
+
+      _backgroundJobs.Schedule<IScheduledJob>(job => job.DoWork(input), enqueueAt);
+    }
+
+    [HttpGet(nameof(ScheduleDelay))]
+    public void ScheduleDelay([FromQuery] int randomInt)
+    {
+      var input = new ScheduledJobInput { Number = randomInt, ScheduleAt = DateTimeOffset.UtcNow };
+      var delay = TimeSpan.FromSeconds(5);
+
+      _backgroundJobs.Schedule<IScheduledJob>(job => job.DoWork(input), delay);
+    }
   }
 }

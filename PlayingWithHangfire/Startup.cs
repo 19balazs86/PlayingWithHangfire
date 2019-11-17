@@ -45,6 +45,7 @@ namespace PlayingWithHangfire
 
       services.AddSingleton<SingletonDependency>();
       services.AddScoped<IRandomNumberJob, RandomNumberJob>();
+      services.AddSingleton<IScheduledJob, ScheduledJob>();
     }
 
     public void Configure(
