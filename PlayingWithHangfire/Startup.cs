@@ -1,8 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -63,14 +67,36 @@ namespace PlayingWithHangfire
 
       app.UseRouting();
 
+      app.UseAuthorization();
+
+      app.Use(injectFakeUser);
+
       // http://localhost:5000/hangfire
-      app.UseHangfireDashboard();
+      app.UseHangfireDashboard("/hangfire", new DashboardOptions
+      {
+        Authorization = new[] { new MyAuthorizationFilter() }
+      });
 
       //backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
-      app.UseAuthorization();
-
       app.UseEndpoints(endpoints => endpoints.MapControllers());
+    }
+
+    private static Task injectFakeUser(HttpContext httpContext, Func<Task> next)
+    {
+      int userId = 1;
+
+      IEnumerable<Claim> claims = new List<Claim>
+      {
+        new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+        new Claim(ClaimTypes.Name, $"User#{userId}")
+      };
+
+      var claimsIdentity = new ClaimsIdentity(claims, "FakeAuthType");
+
+      httpContext.User = new ClaimsPrincipal(claimsIdentity);
+
+      return next.Invoke();
     }
   }
 }
