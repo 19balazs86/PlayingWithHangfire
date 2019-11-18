@@ -12,7 +12,16 @@ namespace PlayingWithHangfire
 {
   public class Startup
   {
+    #region Fields
     private readonly IConfiguration _configuration;
+
+    private readonly SqlServerStorageOptions _serverStorageOptions = new SqlServerStorageOptions
+    {
+      SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+      QueuePollInterval          = TimeSpan.Zero,
+      PrepareSchemaIfNecessary   = true
+    };
+    #endregion
 
     public Startup(IConfiguration configuration)
     {
@@ -27,19 +36,15 @@ namespace PlayingWithHangfire
 
       services.AddHangfire(configuration =>
       {
-        var serverStorageOptions = new SqlServerStorageOptions
-        {
-          SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-          QueuePollInterval          = TimeSpan.Zero,
-          PrepareSchemaIfNecessary   = true
-        };
+        configuration.UseSqlServerStorage(connString, _serverStorageOptions);
 
-        configuration.UseSqlServerStorage(connString, serverStorageOptions);
+        // https://docs.hangfire.io/en/latest/background-processing/dealing-with-exceptions.html
+        configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 4 });
       });
 
       services.AddHangfireServer(options =>
       {
-        options.WorkerCount             = 5;
+        //options.WorkerCount             = 5;
         options.SchedulePollingInterval = TimeSpan.FromSeconds(10);
       });
 
