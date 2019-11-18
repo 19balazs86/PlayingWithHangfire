@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "c714b5e4-bac1-4ae0-bb25-e76044eb2aaa",
+		"name": "Hangfire",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EnqueueConsole",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/EnqueueConsole?randomInt={{$randomInt}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"EnqueueConsole"
+					],
+					"query": [
+						{
+							"key": "randomInt",
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EnqueueRandomNumberJob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/EnqueueRandomNumberJob?randomInt={{$randomInt}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"EnqueueRandomNumberJob"
+					],
+					"query": [
+						{
+							"key": "randomInt",
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleEnqueueAt",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/ScheduleEnqueueAt?randomInt={{$randomInt}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"ScheduleEnqueueAt"
+					],
+					"query": [
+						{
+							"key": "randomInt",
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleDelay",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/ScheduleDelay?randomInt={{$randomInt}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"ScheduleDelay"
+					],
+					"query": [
+						{
+							"key": "randomInt",
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddRecurringJob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/AddRecurringJob?randomInt={{$randomInt}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"AddRecurringJob"
+					],
+					"query": [
+						{
+							"key": "randomInt",
+							"value": "{{$randomInt}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveRecurringJob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ManageHangfire/RemoveRecurringJob",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManageHangfire",
+						"RemoveRecurringJob"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
