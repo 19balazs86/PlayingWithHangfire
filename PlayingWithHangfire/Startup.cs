@@ -38,17 +38,27 @@ namespace PlayingWithHangfire
 
       string connString = _configuration.GetConnectionString("HangfireConnection");
 
+      // --> AddHangfire
       services.AddHangfire(configuration =>
       {
+        // Install-Package Hangfire.MemoryStorage
+        //configuration.UseMemoryStorage();
+
         configuration.UseSqlServerStorage(connString, _serverStorageOptions);
 
         // https://docs.hangfire.io/en/latest/background-processing/dealing-with-exceptions.html
         configuration.UseFilter(new AutomaticRetryAttribute { Attempts = 4 });
       });
 
+      // --> AddHangfireServer
+      // The server can run in other machines.
+      // https://docs.hangfire.io/en/latest/background-processing/placing-processing-into-another-process.html
       services.AddHangfireServer(options =>
       {
-        //options.WorkerCount             = 5;
+        // https://docs.hangfire.io/en/latest/background-processing/configuring-degree-of-parallelism.html
+        //options.WorkerCount = 5;
+
+        // https://docs.hangfire.io/en/latest/background-methods/calling-methods-with-delay.html
         options.SchedulePollingInterval = TimeSpan.FromSeconds(10);
       });
 
