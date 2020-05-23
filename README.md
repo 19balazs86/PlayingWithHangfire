@@ -7,5 +7,6 @@ This repository contains a Web API with a default set-up, configurations, functi
 
 - [Hangfire](https://www.hangfire.io) *(Official page)*
 - [Schedule Background Jobs Using Hangfire in .NET Core](https://codeburst.io/schedule-background-jobs-using-hangfire-in-net-core-2d98eb64b196) *(Medium post by Changhui Xu)*
+- [Securing dashboard with Custom Auth Policy](https://sahansera.dev/securing-hangfire-dashboard-with-endpoint-routing-auth-policy-aspnetcore/) *(Sahan Serasinghe)*
 
-[Azure ServiceBus](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.servicebus.queueclient.schedulemessageasync) also has a feature to scheduling messages.
+[Azure ServiceBus](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.servicebus.queueclient.schedulemessageasync) also has a feature for scheduling messages.
