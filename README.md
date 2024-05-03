@@ -6,6 +6,7 @@ This repository contains a Web API with default configurations and functionaliti
 #### Resources
 
 - [Hangfire](https://www.hangfire.io) 📓*Official page*
+- [Getting started with Hangfire](https://youtu.be/4wURs-67mB0) 📽️*17m - Nick Chapsas*
 - [Perform Out-of-Process Tasks with retry and instrumentation for OpenTelemetry](https://wrapt.dev/blog/hangfire-helps-dotnet-perform-out-of-process-tasks) 📓*Wrapt - Paul DeVito*
 - [How to access HttpContext and other services for DI with Hangfire](https://wrapt.dev/blog/hangfire-job-context) 📓*Wrapt - Paul DeVito*
 - [Using Hangfire with ASP.NET](https://damienbod.com/2023/02/20/using-hangfire-with-asp-net-core) 📓*Damien Bod*
